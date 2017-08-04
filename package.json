@@ -1,0 +1,52 @@
+{
+    "name": "dva-wxapp",
+    "version": "0.1.0",
+    "description": "dva for wxapp",
+    "main": "index.js",
+    "scripts": {
+        "build": "ruban build",
+        "test": "ruban lint && ruban test",
+        "debug": "ruban debug",
+        "coveralls": "ruban coveralls",
+        "lint": "ruban lint",
+        "pub": "ruban pub",
+        "precommit": "ruban lint-staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yautah/dva-wxapp"
+    },
+    "keywords": [
+        "dva",
+        "wxapp",
+        "node"
+    ],
+    "author": "YangQuan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yautah/dva-wxapp/issues"
+    },
+    "homepage": "https://github.com/yautah/dva-wxapp#readme",
+    "dependencies": {
+        "deep-equal": "^1.0.1",
+        "lodash": "^4.17.4",
+        "dva-core": "^0.1.0",
+        "invariant": "^2.2.2",
+        "isomorphic-fetch": "^2.2.1",
+        "react-redux": "^5.0.5",
+        "react-router-redux": "^4.0.8",
+        "redux": "^3.7.2"
+    },
+    "devDependencies": {
+        "expect": "^1.20.2",
+        "ruban": "^0.1.2"
+    },
+    "files": [
+        "lib",
+        "src",
+        "router.js",
+        "fetch.js",
+        "index.js",
+        "saga.js"
+    ]
+}
