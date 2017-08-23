@@ -28,6 +28,16 @@
 ## 一些issule
 
 1. loader 无法支持`app.json` 上的 `tabBar.list.iconPath` 和 `tabBar.list.selectedIconPath` 文件，因此索性使用webpack-copy-plugin直接拷贝整个images目录到输出目录，图片请全部存放至/src/images目录。
+2. 不要使用全局的getApp(),wx等方法及变量。微信的全局方法和变量已经封装至/src/utils/wx.js。
+```js
+ import wx from 'utils/wx.js';
+ ...
+ const app = wx.app; //替代getApp();
+ ...
+ wx.request({}).then(res => {}).catch(err => {});//微信的所有异步api已经封装成promise返回，请不要在使用微信api中的同步阻塞方法
+ 
+```
+
 
 
 ## 感谢以下项目
