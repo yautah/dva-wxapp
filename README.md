@@ -35,7 +35,7 @@
  //替代getApp();
  const app = wx.app; 
   ...
- //微信的所有异步api已经封装成promise返回，请不要在使用微信api中的同步阻塞方法
+ //微信的所有异步api已经封装成promise返回，请不要再使用微信api中的同步阻塞方法
  wx.request({}).then(res => {}).catch(err => {});
  
 ```
