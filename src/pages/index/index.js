@@ -19,6 +19,11 @@ const mapFunc = (dispatch) => {
     click() {
       console.log('i am click func');
     },
+
+    onTapCarouselItem(e) {
+      console.log('overrid in page index');
+    },
+
   };
 };
 

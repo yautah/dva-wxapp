@@ -2,10 +2,13 @@
 <import src="../../components/carousel/carouselT.wxml" />
 
 <view class="container">
-    <text class="indexTitle">我是connect的data:</text>
+    <text class="">我是connect的data:</text>
     <text class="indexTitle">{{title}}</text>
 
-    <text class="indexTitle" style="margin-top:20rpx;">我是导入的组件:</text>
+
+    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+
+    <text class="" style="margin-top:20rpx;">我是导入的组件:</text>
     <template is="carouselT" data="{{ carousel }}" />
 
 </view>
