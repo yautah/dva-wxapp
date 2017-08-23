@@ -39,8 +39,59 @@
  wx.request({}).then(res => {}).catch(err => {});
  
 ```
+3. app.js中已经初始化了dva app，所有的model请存放至src/models目录中。
+```js
+ // src/models/models.js
+import app from './app.js';
+import index from './index.js';
 
+export default [
+  app,
+  index
+];
+ ...
 
+```
+
+```js
+//src/app.js
+
+import models from './models/models.js';
+
+//创建app
+const dvapp = core.create({
+  initialReducer: {}
+},{
+  setupMiddlewares(middlewares) {
+    return [
+      ...middlewares,
+      createLogger({
+        timestamp: true,
+      }),
+    ];
+  }
+});
+
+//加载model
+models.forEach(model => {
+  dvapp.model(model);
+});
+
+//启动app
+dvapp.start();
+console.log('dva init success');
+
+//初始化App()
+const config = {
+  ...dvapp,
+
+  onLaunch() {
+    dvapp._store.dispatch({ type: 'app/getSysInfo' });
+  },
+};
+
+App(config);
+```
 
 ## 感谢以下项目
 
