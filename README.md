@@ -8,9 +8,8 @@
 - 支持通过配置 `alias` 来避免 `../../../` 之类的模块引用
 - 通过 `babel` 支持更丰富的 `ES6` 兼容，包括 `async/await`
 - 内置 `promise` 和 `lodash`（`lodash` 按需引入相应模块，不会全部引入）
-- 使用 `scss` 编写 `.wxss` 文件，内置了一些有用的 `mixins` 和 `extends`
+- 使用 `scss` 编写 `.wxss` 文件
 - 提供 `__DEV__` 和 `process.env.NODE_ENV` 全局常量辅助开发
-- 通过命令行快速创建微信小程序页面
 - 支持在 `production` 环境下压缩代码
 - 引入dva-core，可在小程序环境下欢乐的使用redux
 
