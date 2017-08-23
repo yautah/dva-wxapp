@@ -12,8 +12,7 @@ export default {
   },
 
   onTapCarouselItem() {
-    console.log('this',this);
-    console.log('should override this function');
+    throw new Error('should override this function');
   }
 
 };
