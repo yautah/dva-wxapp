@@ -7,7 +7,8 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const { NODE_ENV, LINT, NO_LINT } = process.env;
 const isDev = NODE_ENV !== 'production';
-const shouldLint = (!isDev || (!!LINT && LINT !== 'false')) && !NO_LINT;
+const shouldLint = true;
+// const shouldLint = (!isDev || (!!LINT && LINT !== 'false')) && !NO_LINT;
 
 export default {
   entry: {

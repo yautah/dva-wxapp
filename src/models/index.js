@@ -1,4 +1,3 @@
-import wx from '../utils/wx.js';
 
 
 export default {

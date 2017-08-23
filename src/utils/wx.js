@@ -1,5 +1,4 @@
 import connect from './connect.js';
-import request from './request.js';
 
 // 特别指定的wx对象中不进行Promise封装的方法
 const noPromiseMethods = {
@@ -117,7 +116,6 @@ function mergeOptions(target, ...args) {
 export {
   mergeOptions,
   connect,
-  request,
 };
 
 export default weex;

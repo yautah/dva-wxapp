@@ -1,4 +1,6 @@
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
+//
+import wx from './wx.js';
 
 const hasOwn = Object.prototype.hasOwnProperty;
 
@@ -36,7 +38,7 @@ const defaultMapStateToProps = () => ({});
 const defaultMapDispatchToProps = dispatch => ({ dispatch });
 
 const createConnect = (mapStateToProps, mapDispatchToProps) => {
-  const app = getApp();
+  const app = wx.app;
   const mapState = mapStateToProps || defaultMapStateToProps;
   // const mapDispatch = mapDispatchToProps && typeof mapDispatchToProps === 'object' ?
     // dispatch => bindActionCreators(mapDispatchToProps, dispatch) : defaultMapDispatchToProps;
@@ -72,7 +74,6 @@ const createConnect = (mapStateToProps, mapDispatchToProps) => {
       }
     }
 
-    const abc = mapDispatch(app._store.dispatch);
 
     return Object.assign({}, page, mapDispatch(app._store.dispatch), {dispatch: app._store.dispatch}, { onLoad, onUnload });
   };

@@ -1,3 +1,4 @@
+import wx from './wx.js';
 
 const makeOptions = (url, options) => {
   const defaultoptions = {
@@ -64,15 +65,13 @@ const request = (url, options) => {
     header = Object.assign({}, headers, { 'content-type': contentType });
   }
 
-
   return new Promise((resolve, reject) => {
     wx.request({
       url: requestUrl,
       method,
       data: body,
       header,
-      dataType: type,
-      success: (response) => {
+      dataType: type}).then(response => {
         // getApp().log(JSON.stringify(response));
         //业务数据异常
         if (response.statusCode < 200 || response.statusCode >= 300) {
@@ -87,17 +86,12 @@ const request = (url, options) => {
           }
           reject(errors);
         }
-
         //正确返回
         resolve(response.data);
-      },
-
-      //请求异常
-      fail: (err) => {
+      }).catch(err => {
         // getApp().log(JSON.stringify(err));
         reject({ error: -1, message: '系统异常，请查看response', err, request: url });
-      }
-    });
+      });
   });
 };
 

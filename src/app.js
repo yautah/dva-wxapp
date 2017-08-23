@@ -34,6 +34,7 @@ const config = {
     dvapp._store.dispatch({ type: 'app/getSysInfo' });
   },
 };
+
 App(config);
 
 

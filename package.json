@@ -1,7 +1,7 @@
 {
-  "name": "wxapp-boilerplate",
-  "version": "0.0.0",
-  "description": "wxapp boilerplate",
+  "name": "dva-wxapp",
+  "version": "0.0.1",
+  "description": "dva-wxapp",
   "scripts": {
     "start": "webpack --watch",
     "webpack": "webpack",
@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack -p"
   },
   "main": "dist/app.js",
-  "author": "cap32",
+  "author": "yautah",
   "license": "MIT",
   "engines": {
     "node": ">=4.2.1"
@@ -35,6 +35,7 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "eslint-config-airbnb": "^11.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.1",
     "glob": "^7.1.2",
