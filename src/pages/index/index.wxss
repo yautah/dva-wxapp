@@ -1,0 +1,10 @@
+
+.indexTitle {
+  background-color: red;
+  margin-top: 20rpx;
+}
+
+.indexButton {
+  width: 100%;
+  margin-top: 20rpx;
+}

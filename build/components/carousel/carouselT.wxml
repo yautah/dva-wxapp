@@ -1,0 +1,3 @@
+<template name="carouselT">
+    <include src="/components/carousel/carousel.wxml" />
+</template>
