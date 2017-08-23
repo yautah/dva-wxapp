@@ -1,5 +1,5 @@
-# wxapp-boilerplate
-使用 `webpack`, `babel`, `scss` 开发的微信小程序项目脚手架
+# dva-wxapp
+使用 `webpack`, `babel`,  开发的微信小程序项目脚手架,集成了dva-core,
 
 
 ## 功能
@@ -12,35 +12,34 @@
 - 提供 `__DEV__` 和 `process.env.NODE_ENV` 全局常量辅助开发
 - 通过命令行快速创建微信小程序页面
 - 支持在 `production` 环境下压缩代码
+- 引入dva-core，可在小程序环境下欢乐的使用redux
 
 
 ## 开始使用
 
-确保安装了 [Node.js](https://nodejs.org/) (>= `v4.2`) 和 [yarn](https://yarnpkg.com) 或 [npm](https://www.npmjs.com/package/npm)
+确保安装了 [Node.js](https://nodejs.org/) (>= `v4.2`) 
 
 1. `git clone` 此项目
-2. 通过命令行工具 `cd` 到这个目录，执行 `yarn` 安装依赖模块
-3. 执行 `yarn start` 开始开发
-4. 通过微信开发者工具，添加 `dist` 目录到项目上
+2. 通过命令行工具 `cd` 到这个目录，执行 `npm install` 安装依赖模块
+3. 执行 `npm start` 开始开发
+4. 通过微信开发者工具，添加 `build` 目录到项目上
+5. 执行 `npm run build`进行编译，打开微信卡发着工具，添加`dist`目录到项目上进行上传。
 
 
-## 内置命令
+## 一些issule
 
-- `yarn start` 启动 `webpack` 开发项目，能监听文件变化自动重新编译
-- `yarn build` 编译生成 `production` 环境的代码到 `dist` 
-- `yarn create-page` 快速创建微信小程序页面
+1. loader 无法支持`app.json` 上的 `tabBar.list.iconPath` 和 `tabBar.list.selectedIconPath` 文件，因此索性使用webpack-copy-plugin直接拷贝整个images目录到输出目录，图片请全部存放至/src/images目录。
 
 
-## 注意
+## 感谢以下项目
 
-暂不支持直接引入 `app.json` 上的 `tabBar.list.iconPath` 和 `tabBar.list.selectedIconPath` 文件，需要配合 `copy-webpack-plugin` 手动引入
+- [wxml-loader](https://github.com/Cap32/wxml-loader)
+- [wxapp-webpack-plugin](https://github.com/Cap32/wxapp-webpack-plugin)
+- [wxapp-boilerplate](https://github.com/cantonjs/wxapp-boilerplate)
+- [dva-core](https://github.com/dvajs/dva-core)
+- [dva](https://github.com/dvajs/dva)
 
 
-## 相关项目
-
-- [react-lib-boilerplate](https://github.com/cantonjs/react-lib-boilerplate)
-- [front-end-lib-boilerplate](https://github.com/cantonjs/front-end-lib-boilerplate)
-- [node-cli-boilerplate](https://github.com/cantonjs/node-cli-boilerplate)
 
 ## License
 
