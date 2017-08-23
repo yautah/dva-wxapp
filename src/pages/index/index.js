@@ -5,6 +5,7 @@ import { mergeOptions } from '../../utils/wx.js';
 const page = mergeOptions({
   onLoad(options) {
     console.log(this);
+    this.queryWeather();
   },
 },carousel);
 
@@ -16,12 +17,17 @@ const mapState = ({index}) => {
 
 const mapFunc = (dispatch) => {
   return {
+
+    queryWeather() {
+      dispatch({ type: 'index/queryWeather' });
+    },
+
     click() {
       console.log('i am click func');
     },
 
     onTapCarouselItem(e) {
-      console.log('overrid in page index');
+      console.log('override in page index');
     },
 
   };

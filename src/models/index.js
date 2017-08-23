@@ -1,9 +1,11 @@
-
+import api from '../utils/api/api.js';
+import wx from '../utils/wx.js';
 
 export default {
   namespace: 'index',
 
   state: {
+    weather: {},
     title: 'hello world',
     carousel: {
       indicatorDots: true,  //显示面板指示点
@@ -24,9 +26,28 @@ export default {
   },
 
   reducers: {
+    queryWeatherSuccess(state, action) {
+      const { weather } = action.payload;
+      return {
+        ...state,
+        weather,
+      };
+    },
   },
 
   effects: {
+    *queryWeather(payload, { call, put }) {
+      wx.showLoading({ title: '获取天气中' });
+      try {
+        const weather = yield call(api.queryWeather);
+        wx.hideLoading();
+        yield put({ type: 'queryWeatherSuccess', payload: { weather }});
+      } catch (e) {
+        /* handle error */
+        wx.hideLoading();
+        console.log('weather error', e);
+      }
+    },
   },
 
   subscriptions: {

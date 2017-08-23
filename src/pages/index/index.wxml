@@ -2,13 +2,21 @@
 <import src="../../components/carousel/carouselT.wxml" />
 
 <view class="container">
-    <text class="">我是connect的data:</text>
-    <text class="indexTitle">{{title}}</text>
+    <text class="indexTitle">我是connect的data:</text>
+    <text class="">{{title}}</text>
 
 
     <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
 
-    <text class="" style="margin-top:20rpx;">我是导入的组件:</text>
+    <text class="indexTitle" style="margin-top:20rpx;">我是导入的组件:</text>
     <template is="carouselT" data="{{ carousel }}" />
+
+    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+
+    <text class="indexTitle" style="margin-top:20rpx;">我是effects:</text>
+    <view>{{weather.city}}</view>
+    <view>温度：{{weather.data.wendu}}</view>
+    <view>pm25：{{weather.data.pm25}}</view>
+    <view>pm10：{{weather.data.pm10}}</view>
 
 </view>
