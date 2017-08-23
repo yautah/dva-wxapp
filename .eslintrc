@@ -1,63 +1,27 @@
 {
+    //配置解析器
     "parser": "babel-eslint",
-    "extends": [ ],
-    "env": {
+
+    "extends": ["standard", "eslint:recommended"],
+
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+
+    "env": {//脚本目标的运行环境
         "browser": true,
         "node": true,
         "es6": true,
-        "mocha": true,
-        "jest": true,
+        "commonjs": true
     },
-    "rules": {
 
-        "promise/avoid-new": 0,
-        "promise/no-callback-in-promise": 0,
-        "promise/always-return": 0,
-
-        "space-in-parens": 0,
-        "keyword-spacing": 0,
-        "semi": [0, "always"],
-        "no-tabs": 0,
-        "comma-dangle": 0,
-        "comma-spacing": 0,
-        "generator-star-spacing": 0,
-        "indent": [0, "tab", {
-            "SwitchCase": 1
-        }],
-        "padded-blocks": 0,
-        "space-before-function-paren": [0, {
-            "anonymous": "always",
-            "named": "never"
-        }],
-        "no-self-compare": 0,
-        "max-len": [1, {
-            "code": 120,
-            "tabWidth": 2,
-            "ignoreComments": true,
-            "ignoreStrings": true,
-            "ignoreUrls": true,
-            "ignoreRegExpLiterals": true,
-        }],
-        "brace-style": 0,
-        "operator-linebreak": [0, "after"],
-        "camelcase": 0,
-        "no-multiple-empty-lines": [1, {
-            "max": 2,
-        }],
-        "no-unused-vars": [0, {
-            "vars": "all",
-            "args": "after-used",
-            "caughtErrors": "none",
-            "ignoreRestSiblings": true,
-        }],
-        "spaced-comment": 0,
-    },
     "globals": {
         "__DEV__": true,
         "App": true,
         "Page": true,
-        "wx": true,
-        "getApp": true,
     },
     "settings": {
         "import/resolver": {
@@ -65,5 +29,56 @@
                 "config": "webpack.config.babel.js"
             }
         }
+    },
+
+    //规则，只用插件：插件名/规则
+    "rules": {
+        "strict": 0,
+        "import/no-unresolved": [2, {"commonjs": true, "amd": true}],
+        "max-len": ["error", 300],  //每行最长字符数
+        "no-debugger": 1,
+        "no-constant-condition": 2,
+        "no-extra-boolean-cast": 2,
+        "use-isnan": 2,
+        "no-undef-init": 2,
+        "camelcase": 2,
+        "no-mixed-spaces-and-tabs": 2,
+        "no-const-assign":2,
+        "no-func-assign": 2,
+        "no-else-return": 1,
+        "no-obj-calls": 2,
+        "valid-typeof": 2,
+        "no-unused-vars": 1,
+        "quotes": 0,
+        "object-curly-spacing": 0,
+        "block-spacing": 1,
+        "semi": 0,
+        "no-extra-semi": 0,
+        "keyword-spacing": 1,
+        "comma-dangle": 0,
+        "array-bracket-spacing": 1,
+        "space-before-function-paren": 0,
+        "no-extra-bind": 1,
+        "no-var": 2,
+        "one-var": 0,
+        "no-redeclare": 2,
+        "no-new": 0,
+        "no-new-func": 2,
+        "no-new-wrappers": 0,
+        "indent": 0,
+        "arrow-spacing": ["error", { "before": true, "after": true }],
+        "arrow-body-style": 0,
+        "no-global-assign": 0,
+        "no-unsafe-negation": 0,
+        "no-empty-function": ["error", { "allow": ["arrowFunctions", "constructors"] }],
+        "radix": ["error", "as-needed"],
+        "no-underscore-dangle": ["error", { "allow": ["object_", "_objects", "_store"] }],
+        "no-param-reassign": ["error", { "props": false }],
+        "no-alert": 0,
+        "no-shadow": 0,
+        "global-require": 0,
+        "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+        "linebreak-style": [0, "windows"],
+        "no-console": 0,
     }
 }
