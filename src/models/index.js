@@ -63,8 +63,7 @@ export default {
     },
 
     *watchLocation(payload, { put, take, select }) {
-      let location;
-      location = yield select(state => state.app.location );
+      let { location } = yield select(state => state.app );
       if (!location) {
         yield take('app/getLocationSuccess');
         location = yield select(state => state.app.location );
