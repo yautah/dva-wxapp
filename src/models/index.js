@@ -33,9 +33,13 @@ export default {
         weather,
       };
     },
+
     getLocationSuccess(state, action) {
       const { location } = action.payload;
-      return { ...state, location  };
+      return {
+        ...state,
+        location,
+      };
     }
   },
 
