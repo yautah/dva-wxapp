@@ -61,6 +61,28 @@ export default {
         // }
       // },
       {
+				test: /\.scss$/,
+				include: /src/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							useRelativePath: true,
+							name: '[name].wxss',
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							includePaths: [
+								resolve('src', 'styles'),
+								resolve('src'),
+							],
+						},
+					},
+				],
+			},
+      {
         test: /\.wxss/,
         include: /src/,
         use: [
