@@ -33,6 +33,10 @@ export default {
         weather,
       };
     },
+    getLocationSuccess(state, action) {
+      const { location } = action.payload;
+      return { ...state, location  };
+    }
   },
 
   effects: {
@@ -41,15 +45,28 @@ export default {
       try {
         const weather = yield call(api.queryWeather);
         wx.hideLoading();
-        yield put({ type: 'queryWeatherSuccess', payload: { weather }});
+        yield put({ type: 'queryWeatherSuccess', payload: { weather } });
       } catch (e) {
         /* handle error */
         wx.hideLoading();
         console.log('weather error', e);
       }
     },
+
+    *watchLocation(payload, { put, take, select }) {
+      let location;
+      location = yield select(state => state.app.location );
+      if (!location) {
+        yield take('app/getLocationSuccess');
+        location = yield select(state => state.app.location );
+      }
+      yield put({ type: 'getLocationSuccess', payload: { location } });
+    }
   },
 
   subscriptions: {
+    watchLocation({ dispatch }) {
+      dispatch({ type: 'watchLocation' });
+    }
   }
 }

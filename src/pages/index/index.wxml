@@ -19,4 +19,10 @@
     <view>pm25：{{weather.data.pm25}}</view>
     <view>pm10：{{weather.data.pm10}}</view>
 
+    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+    <text class="indexTitle" style="margin-top:20rpx;">我是subscription(监控到获取位置后触发):</text>
+    <view>经度：{{location.longitude}}</view>
+    <view>维度：{{location.latitude}}</view>
+
+
 </view>
