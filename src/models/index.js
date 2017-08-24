@@ -5,6 +5,11 @@ export default {
   namespace: 'index',
 
   state: {
+    a: {
+      b: {
+        c: 'abc',
+      }
+    },
     weather: {},
     title: 'hello world',
     carousel: {
