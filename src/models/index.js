@@ -5,11 +5,6 @@ export default {
   namespace: 'index',
 
   state: {
-    a: {
-      b: {
-        c: 'abc',
-      }
-    },
     weather: {},
     title: 'hello world',
     carousel: {
@@ -45,6 +40,14 @@ export default {
         ...state,
         location,
       };
+    },
+
+    getUserInfoSuccess(state, action) {
+      const { userInfo } = action.payload;
+      return {
+        ...state,
+        userInfo,
+      };
     }
   },
 
@@ -69,10 +72,33 @@ export default {
         location = yield select(state => state.app.location );
       }
       yield put({ type: 'getLocationSuccess', payload: { location } });
+    },
+
+    *watchLogin(payload, { call, put, take, select, takeEvery }) {
+      let { userInfo } = yield select(state => state.app );
+      // if (!userInfo) {
+      // yield takeEvery('app/getUserInfoSuccess', function*(action) {
+      // userInfo = action.payload.userInfo;
+      // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
+      // });
+      // } else {
+      // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
+      // }
+
+      if (!userInfo) {
+        const action = yield take('app/getUserInfoSuccess');
+        userInfo = action.payload.userInfo;
+      }
+      yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
+
     }
   },
 
   subscriptions: {
+    setup({ dispatch }) {
+      dispatch({ type: 'watchLogin' });
+    },
+
     watchLocation({ dispatch }) {
       dispatch({ type: 'watchLocation' });
     }

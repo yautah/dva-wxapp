@@ -33,6 +33,7 @@ const config = {
   onLaunch() {
     dvapp._store.dispatch({ type: 'app/getSysInfo' });
     dvapp._store.dispatch({ type: 'app/getLocation' });
+    dvapp._store.dispatch({ type: 'app/getUserInfo' });
   },
 };
 

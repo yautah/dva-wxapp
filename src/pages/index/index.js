@@ -1,12 +1,14 @@
 import connect from '../../utils/connect.js';
 import carousel from '../../components/carousel/carousel.js';
-import { mergeOptions } from '../../utils/wx.js';
+import wx, { mergeOptions } from '../../utils/wx.js';
 
 const page = mergeOptions({
-  onLoad(options) {
-    console.log(this);
-    this.queryWeather();
+  onRouteEnd(e) {
+    console.log('route end', e);
   },
+  onShow(options) {
+    console.log('onshow ', options);
+  }
 },carousel);
 
 const mapState = ({index}) => {
@@ -18,9 +20,6 @@ const mapState = ({index}) => {
 const mapFunc = (dispatch) => {
   return {
 
-    queryWeather() {
-      dispatch({ type: 'index/queryWeather' });
-    },
 
     click() {
       console.log('i am click func');
@@ -28,6 +27,7 @@ const mapFunc = (dispatch) => {
 
     onTapCarouselItem(e) {
       console.log('override in page index');
+      dispatch({ type: 'app/getUserInfoSuccess', payload: { userInfo: { nickName: 'haha' }} });
     },
 
   };

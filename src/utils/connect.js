@@ -74,8 +74,12 @@ const createConnect = (mapStateToProps, mapDispatchToProps) => {
       }
     }
 
-
-    return Object.assign({}, page, mapDispatch(app._store.dispatch), {dispatch: app._store.dispatch}, { onLoad, onUnload });
+    return Object.assign({},
+      page,
+      mapDispatch(app._store.dispatch),
+      {dispatch: app._store.dispatch},
+      { onLoad, onUnload }
+    );
   };
 };
 
