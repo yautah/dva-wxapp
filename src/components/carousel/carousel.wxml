@@ -9,7 +9,7 @@
   >
   <block wx:for="{{carousel.images}}">
     <swiper-item wx:if="{{ item.imgUrl }}">
-      <image style="width: 750rpx; height: {{height||285}}rpx" ontap="onTapCarouselItem" data-link="{{item.link}}" src="{{item.imgUrl}}" class="carousel-slideImage" />
+      <image style="width: 750rpx; height: {{height||285}}rpx" ontap="onTapCarouselItem" data-pic="{{item}}" src="{{item.imgUrl}}" class="carousel-slideImage" />
     </swiper-item>
   </block>
 </swiper>

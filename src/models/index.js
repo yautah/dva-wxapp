@@ -6,14 +6,6 @@ export default {
   namespace: 'index',
 
   state: {
-    markers: [{
-      iconPath: "/resources/others.png",
-      id: 0,
-      latitude: 23.099994,
-      longitude: 113.324520,
-      width: 50,
-      height: 50
-    }],
     weather: {},
     title: 'hello world',
     carousel: {
@@ -30,7 +22,6 @@ export default {
         imgUrl: "http://imgcdnali.ylallinone.com/pcImg/2017-05-03/14937842759450.jpg",
       }],
     },
-    width: 750,
 
   },
 
@@ -61,7 +52,7 @@ export default {
   },
 
   effects: {
-    *queryWeather(payload, { call, put }) {
+    *queryWeather(action, { call, put }) {
       wx.showLoading({ title: '获取天气中' });
       try {
         const weather = yield call(api.queryWeather);
@@ -74,11 +65,22 @@ export default {
       }
     },
 
-    *watchLocation(payload, { put, take, select, takeEvery }) {
+    *onTapCarousel(action, { select }) {
+      console.log(action);
+      const { pic } = action.payload;
+      const { carousel } = yield select(state => state.index);
+      const pics = carousel.images.map(img => img.imgUrl);
+      wx.previewImage({
+        current: pic.imgUrl, // 当前显示图片的http链接
+        urls: pics,// 需要预览的图片http链接列表
+      });
+    },
+
+    *watchLocation(action, { put, take, select, takeEvery }) {
       let { location } = yield select(state => state.app );
       if (!location) {
-        yield takeEvery('app/getLocationSuccess', function* (action) {
-            location = action.payload;
+        yield takeEvery('app/getLocationSuccess', function* (action1) {
+            location = action1.payload;
             yield put({ type: 'getLocationSuccess', payload: { location } });
         });
       } else {
@@ -86,11 +88,11 @@ export default {
       }
     },
 
-    *watchLogin(payload, { call, put, take, select, takeEvery }) {
+    *watchLogin(action, { call, put, take, select, takeEvery }) {
       let { userInfo } = yield select(state => state.app );
       // if (!userInfo) {
-      // yield takeEvery('app/getUserInfoSuccess', function*(action) {
-      // userInfo = action.payload.userInfo;
+      // yield takeEvery('app/getUserInfoSuccess', function*(action1) {
+      // userInfo = action1.payload.userInfo;
       // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
       // });
       // } else {
@@ -98,8 +100,8 @@ export default {
       // }
 
       if (isEmpty(userInfo)) {
-        const action = yield take('app/getUserInfoSuccess');
-        userInfo = action.payload.userInfo;
+        const action1 = yield take('app/getUserInfoSuccess');
+        userInfo = action1.payload.userInfo;
       }
       yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
 

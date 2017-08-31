@@ -11,8 +11,6 @@ const page = mergeOptions({
     console.log('onshow ', options);
   },
 
-  onReady() {
-  },
 },carousel);
 
 const mapState = ({index}) => {
@@ -31,13 +29,11 @@ const mapFunc = (dispatch) => {
       dispatch({ type: 'app/getLocation' });
     },
 
-    click() {
-      console.log('i am click func');
-    },
-
     onTapCarouselItem(e) {
-      console.log('override in page index');
-      dispatch({ type: 'app/getUserInfoSuccess', payload: { userInfo: { nickName: 'haha' }} });
+      dispatch({
+        type: 'index/onTapCarousel',
+        payload: { pic: e.currentTarget.dataset.pic }
+      });
     },
 
   };
