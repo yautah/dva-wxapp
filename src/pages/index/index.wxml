@@ -2,33 +2,34 @@
 <import src="../../components/carousel/carouselT.wxml" />
 
 <view class="container">
-    <text class="indexTitle">我是connect的data:</text>
-    <text class="">{{title}}</text>
+  <text class="indexTitle">我是connect的data:</text>
+  <text class="">{{title}}</text>
 
 
-    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+  <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
 
-    <text class="indexTitle" style="margin-top:20rpx;">我是导入的组件:</text>
-    <template is="carouselT" data="{{ carousel }}" />
+  <text class="indexTitle" style="margin-top:20rpx;">我是导入的组件:</text>
+  <template is="carouselT" data="{{ carousel }}" />
 
-    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+  <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
 
-    <text class="indexTitle" style="margin-top:20rpx;">我是effects:</text>
-    <view>{{weather.city}}</view>
-    <view>温度：{{weather.data.wendu}}</view>
-    <view>pm25：{{weather.data.pm25}}</view>
-    <view>pm10：{{weather.data.pm10}}</view>
+  <text class="indexTitle" style="margin-top:20rpx;">我是effects:</text>
+  <view>{{weather.city}}</view>
+  <view>温度：{{weather.data.wendu}}</view>
+  <view>pm25：{{weather.data.pm25}}</view>
+  <view>pm10：{{weather.data.pm10}}</view>
 
-    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
-    <text class="indexTitle" style="margin-top:20rpx;">我是subscription(监控到获取位置后触发):</text>
-    <view>经度：{{location.longitude}}</view>
-    <view>维度：{{location.latitude}}</view>
+  <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+  <text class="indexTitle" style="margin-top:20rpx;">我是subscription(监控到获取位置后触发(每次都触发)):</text>
+  <view>经度：{{location.longitude}}</view>
+  <view>维度：{{location.latitude}}</view>
+  <button ontap="queryLocation">获取位置</button>
 
 
-    <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
-    <view><image style="width: 200rpx;height:200rpx" src="{{userInfo.avatarUrl}}" /></view>
-    <view>{{userInfo.nickName}}</view>
-
+  <view style="margin:20rpx; padding: 20rpx;width: 100%;border-top: 1px solid #f2f2f2;height: 1px" />
+  <text class="indexTitle" style="margin-top:20rpx;">我是subscription(监控到获取用户信息后触发(仅触发一次)):</text>
+  <view><image style="width: 200rpx;height:200rpx" src="{{userInfo.avatarUrl}}" /></view>
+  <view>{{userInfo.nickName}}</view>
 
 
 </view>

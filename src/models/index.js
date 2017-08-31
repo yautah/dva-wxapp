@@ -1,10 +1,19 @@
 import api from '../utils/api/api.js';
 import wx from '../utils/wx.js';
+import { isEmpty } from 'lodash';
 
 export default {
   namespace: 'index',
 
   state: {
+    markers: [{
+      iconPath: "/resources/others.png",
+      id: 0,
+      latitude: 23.099994,
+      longitude: 113.324520,
+      width: 50,
+      height: 50
+    }],
     weather: {},
     title: 'hello world',
     carousel: {
@@ -65,13 +74,16 @@ export default {
       }
     },
 
-    *watchLocation(payload, { put, take, select }) {
+    *watchLocation(payload, { put, take, select, takeEvery }) {
       let { location } = yield select(state => state.app );
       if (!location) {
-        yield take('app/getLocationSuccess');
-        location = yield select(state => state.app.location );
+        yield takeEvery('app/getLocationSuccess', function* (action) {
+            location = action.payload;
+            yield put({ type: 'getLocationSuccess', payload: { location } });
+        });
+      } else {
+        yield put({ type: 'getLocationSuccess', payload: { location } });
       }
-      yield put({ type: 'getLocationSuccess', payload: { location } });
     },
 
     *watchLogin(payload, { call, put, take, select, takeEvery }) {
@@ -85,7 +97,7 @@ export default {
       // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
       // }
 
-      if (!userInfo) {
+      if (isEmpty(userInfo)) {
         const action = yield take('app/getUserInfoSuccess');
         userInfo = action.payload.userInfo;
       }

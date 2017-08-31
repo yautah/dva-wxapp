@@ -4,6 +4,7 @@ export default {
   namespace: 'app',
 
   state: {
+    userInfo: {},
   },
 
   reducers: {
@@ -43,19 +44,25 @@ export default {
         yield call(wx.checkSession);
         const data = yield call(wx.getStorage, { key: 'userInfo' });
         userInfo = data.data;
-        console.log('userInfo from local ------ ', userInfo)
       } catch (e) {
         /* handle error */
         yield call(wx.login);
         const res  = yield call(wx.getUserInfo);
         userInfo = res.userInfo;
-        console.log('userInfo from weixin ----- ', userInfo)
         yield call(wx.setStorage, { key: 'userInfo', data: userInfo });
       }
 
       if (userInfo) {
         yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
       }
+    },
+
+    *init(action, { all, put }) {
+      yield all([
+        put({ type: 'getUserInfo' }),
+        put({ type: 'getLocation' }),
+        put({ type: 'getSysInfo' }),
+      ]);
     }
  },
 

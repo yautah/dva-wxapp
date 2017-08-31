@@ -11,6 +11,8 @@ const dvapp = core.create({
     return [
       ...middlewares,
       createLogger({
+        duration: true,
+        collapsed: true,
         timestamp: true,
       }),
     ];
@@ -24,16 +26,13 @@ models.forEach(model => {
 
 //启动app
 dvapp.start();
-console.log('dva init success');
 
 //初始化App()
 const config = {
   ...dvapp,
 
   onLaunch() {
-    dvapp._store.dispatch({ type: 'app/getSysInfo' });
-    dvapp._store.dispatch({ type: 'app/getLocation' });
-    dvapp._store.dispatch({ type: 'app/getUserInfo' });
+    dvapp._store.dispatch({ type: 'app/init' });
   },
 };
 
