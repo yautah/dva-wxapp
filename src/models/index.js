@@ -90,14 +90,6 @@ export default {
 
     *watchLogin(action, { call, put, take, select, takeEvery }) {
       let { userInfo } = yield select(state => state.app );
-      // if (!userInfo) {
-      // yield takeEvery('app/getUserInfoSuccess', function*(action1) {
-      // userInfo = action1.payload.userInfo;
-      // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
-      // });
-      // } else {
-      // yield put({ type: 'getUserInfoSuccess', payload: { userInfo } });
-      // }
 
       if (isEmpty(userInfo)) {
         const action1 = yield take('app/getUserInfoSuccess');

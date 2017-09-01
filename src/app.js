@@ -11,7 +11,7 @@ const dvapp = core.create({
     return [
       ...middlewares,
       createLogger({
-        //dva-loading的logger太多了，忽略掉
+        //dva-loading的log太多了，忽略掉
         //直接从logger的state中查看loading状态即可
         predicate: (getState, action) => (action.type !== '@@DVA_LOADING/HIDE' && action.type!=='@@DVA_LOADING/SHOW'),
         duration: true,
