@@ -51,10 +51,11 @@
     "wxml-loader": "^0.0.0-6"
   },
   "dependencies": {
-      "redux": "^3.7.1",
-      "redux-logger": "^2.0.4",
-      "dva-core": "^0.1.2",
-      "es6-promise": "^4.1.0",
-      "lodash": "^4.17.4"
+    "dva-core": "^0.1.2",
+    "dva-loading": "^0.2.1",
+    "es6-promise": "^4.1.0",
+    "lodash": "^4.17.4",
+    "redux": "^3.7.1",
+    "redux-logger": "^2.0.4"
   }
 }

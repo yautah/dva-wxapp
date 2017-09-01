@@ -109,10 +109,12 @@ export default {
   },
 
   subscriptions: {
+    //监控获取用户信息
     setup({ dispatch }) {
       dispatch({ type: 'watchLogin' });
     },
 
+    //监控位置变化
     watchLocation({ dispatch }) {
       dispatch({ type: 'watchLocation' });
     }

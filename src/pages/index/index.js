@@ -6,16 +6,12 @@ const page = mergeOptions({
   onLoad(options) {
      this.queryWeather();
   },
-
-  onShow(options) {
-    console.log('onshow ', options);
-  },
-
 },carousel);
 
-const mapState = ({index}) => {
+const mapState = ({index, loading}) => {
   return {
     ...index,
+    loading,
   };
 };
 
