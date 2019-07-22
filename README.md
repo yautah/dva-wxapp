@@ -49,31 +49,31 @@ export default {
   reducers: {},
   effects: {},
 }
+```
 
-//在合适的位置载入model
+#### 在合适的位置载入model
 
-//譬如在dva start之前
+> 譬如在dva start之前
+```js
 import user from 'user.js'
 
 getApp().model(user)
 
 //启动dva
 dvapp.start()
+```
 
-//考虑到分包加载的问题，你也可以选择把model分布到各个分包
-//在page初始化前载入model，例如
-
+> 考虑到分包加载的问题，你也可以选择把model分布到各个分包, 在page初始化前载入model，例如
+```js
 import user from 'user.js'
 getApp().model(user)
 Page({
  ....
 })
-
-
-
-
-
 ```
+
+
+
 
 
 ## 开始使用
