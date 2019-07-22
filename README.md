@@ -11,7 +11,7 @@ npm install --save dva-wxapp
 ```
 
 
-## 使用
+## 开始使用
 
 ### 在app.js中初始化 DVA
 
@@ -42,12 +42,34 @@ App({
 ### 编写并加载 model
 
 ```js
-// user.js
+// global.js
 export default {
-  namespace: 'user',
-  state: {},
+  namespace: 'global',
+
+  state: {
+    location: null
+  },
+
+  subscriptions: {
+    init({ dispatch }) {
+      dispatch({type: 'getLocation'})
+    },
+  },
+
   reducers: {},
-  effects: {},
+
+  effects: {
+    *getLocation(_, {call, put}){
+      try {
+        const res = yield call(wxp.getLocation)
+        yield put({type: '@@locationSuccess', payload: {location: res}})
+        yield put({type: 'updateState', payload: {location: res}})
+      } catch (e) {
+        console.error(e)
+        yield put({type: '@@locationFailed'})
+      }
+    }
+  },
 }
 ```
 
@@ -72,8 +94,46 @@ Page({
 })
 ```
 
+### connect model 到页面
+
+> 熟悉的connect， 熟悉的味道
+```js
+//index.js
+import { connect, createSelector } from 'dva-wxapp'
+import wxp from '../../utils/wxp'
+
+//使用 reselect 创建 selector
+const getLocationTxt = createSelector(
+  (store) => store.global.location,
+  (location) => {
+    return location ?  `${location.latitude} , ${location.longitude}` : ''
+  }
+)
+
+const mapState = (store) => {
+  return {
+    location: store.global.location,
+    locating: store.loading.effects['global/getLocation'],
+    locationTxt : getLocationTxt(store)
+  }
+}
+
+Page(
+  connect(mapState)({
+    data: {
+    },
 
 
+    onLoad: function() {
+    },
+
+    handleTap(){
+      this.dispatch({type:'global/getLocation'})
+    }
+
+  }),
+)
+```
 
 
 ## 开始使用
@@ -89,77 +149,26 @@ Page({
 
 ## 一些issule
 
-1. loader 无法支持`app.json` 上的 `tabBar.list.iconPath` 和 `tabBar.list.selectedIconPath` 文件，因此索性使用webpack-copy-plugin直接拷贝整个images目录到输出目录，图片请全部存放至/src/images目录。
-2. 不要使用全局的getApp(),wx等方法及变量。微信的全局方法和变量已经封装至/src/utils/wx.js。
+1. 使用此组件需要依赖小程序基础库 2.2.1 以上版本，同时依赖开发者工具的 npm 构建。项目设置中请打开“增强编译”选项，redux-saga依赖regeneratorRuntime, 需要增强编译的支持。
+
+2. dva在app中初始化后，请务必解构赋值到App中，如：
 ```js
- import wx from 'utils/wx.js';
- ...
- //替代getApp();
- const app = wx.app; 
-  ...
- //微信的所有异步api已经封装成promise返回，请不要再使用微信api中的同步阻塞方法
- wx.request({}).then(res => {}).catch(err => {});
- 
-```
-3. app.js中已经初始化了dva app，所有的model请存放至src/models目录中。
-```js
- // src/models/models.js
-import app from './app.js';
-import index from './index.js';
-
-export default [
-  app,
-  index
-];
- ...
-
-```
-
-```js
-//src/app.js
-
-import models from './models/models.js';
-
-//创建app
-const dvapp = core.create({
-  initialReducer: {}
-},{
-  setupMiddlewares(middlewares) {
-    return [
-      ...middlewares,
-      createLogger({
-        timestamp: true,
-      }),
-    ];
-  }
-});
-
-//加载model
-models.forEach(model => {
-  dvapp.model(model);
-});
-
-//启动app
-dvapp.start();
-console.log('dva init success');
-
-//初始化App()
-const config = {
+App({
   ...dvapp,
 
-  onLaunch() {
-    dvapp._store.dispatch({ type: 'app/getSysInfo' });
-  },
-};
+  globalData: { },
 
-App(config);
+  onLaunch: function() {
+  },
+})
+
+
+3. 项目中同时内置了 redux-logger, dva-loading, reselect等lib， 代码不大，方便使用，具体请见example。
+
 ```
 
 ## 感谢以下项目
 
-- [wxml-loader](https://github.com/Cap32/wxml-loader)
-- [wxapp-webpack-plugin](https://github.com/Cap32/wxapp-webpack-plugin)
-- [wxapp-boilerplate](https://github.com/cantonjs/wxapp-boilerplate)
 - [dva-core](https://github.com/dvajs/dva-core)
 - [dva](https://github.com/dvajs/dva)
 
