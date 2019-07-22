@@ -1,17 +1,79 @@
 # dva-wxapp
-使用 `webpack`, `babel`,  开发的微信小程序项目脚手架,集成了dva-core,
+
+小程序开发中使用dva，[dva](https://github.com/dvajs/dva)
+
+> 使用此组件需要依赖小程序基础库 2.2.1 以上版本，同时依赖开发者工具的 npm 构建。具体详情可查阅[官方 npm 文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)。
+
+## 安装
+
+```bash
+npm install --save dva-wxapp
+```
 
 
-## 功能
+## 使用
 
-- 支持引用 `node_modules` 模块
-- 支持通过配置 `alias` 来避免 `../../../` 之类的模块引用
-- 通过 `babel` 支持更丰富的 `ES6` 兼容，包括 `async/await`
-- 内置 `promise` 和 `lodash`（`lodash` 按需引入相应模块，不会全部引入）
-- 使用 `scss` 编写 `.wxss` 文件
-- 提供 `__DEV__` 和 `process.env.NODE_ENV` 全局常量辅助开发
-- 支持在 `production` 环境下压缩代码
-- 引入dva-core，可在小程序环境下欢乐的使用redux
+### 在app.js中初始化 DVA
+
+```js
+import dva, { createLoading, createLogger } from 'dva-wxapp'
+
+
+//创建app
+const dvapp = dva.create({ initialReducer: {} })
+
+//开启 dva-loading
+dvapp.use(createLoading({ effects: true }))
+
+//启动dva
+dvapp.start()
+
+App({
+  ...dvapp,
+
+  globalData: { },
+
+  onLaunch: function() {
+  },
+})
+
+```
+
+### 编写并加载 model
+
+```js
+// user.js
+export default {
+  namespace: 'user',
+  state: {},
+  reducers: {},
+  effects: {},
+}
+
+//在合适的位置载入model
+
+//譬如在dva start之前
+import user from 'user.js'
+
+getApp().model(user)
+
+//启动dva
+dvapp.start()
+
+//考虑到分包加载的问题，你也可以选择把model分布到各个分包
+//在page初始化前载入model，例如
+
+import user from 'user.js'
+getApp().model(user)
+Page({
+ ....
+})
+
+
+
+
+
+```
 
 
 ## 开始使用
