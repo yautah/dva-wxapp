@@ -1,46 +1,19 @@
-import * as core from 'dva-core';
-import createLogger from 'redux-logger';
-import createLoading from 'dva-loading';
-import models from './models/models.js';
+// import regeneratorRuntime from 'regenerator-runtime'
+import * as core from './dva-core'
+import saga from './dva-core/saga.js'
+import createLoading from './dva-loading'
+import connect from './utils/connect.js'
+import { createLogger } from './libs/redux-logger.js'
+import { createSelector } from './libs/reselect.min.js'
+import extendModel from './utils/dva-model-extend'
 
-//创建app
-const dvapp = core.create({
-  initialReducer: {}
-},{
-  setupMiddlewares(middlewares) {
-    return [
-      ...middlewares,
-      createLogger({
-        //dva-loading的log太多了，忽略掉
-        //直接从logger的state中查看loading状态即可
-        predicate: (getState, action) => (action.type !== '@@DVA_LOADING/HIDE' && action.type!=='@@DVA_LOADING/SHOW'),
-        duration: true,
-        collapsed: true,
-        timestamp: true,
-      }),
-    ];
-  }
-});
+export default core
+// export { connect, saga }
+// export { createLoading, connect, regeneratorRuntime, saga }
+export { createLoading, connect, saga, createLogger, createSelector, extendModel }
 
-//加载model
-models.forEach(model => {
-  dvapp.model(model);
-});
-
-dvapp.use(createLoading({ effects: true }));
-
-//启动app
-dvapp.start();
-
-//初始化App()
-const config = {
-  ...dvapp,
-
-  onLaunch() {
-    dvapp._store.dispatch({ type: 'app/init' });
-  },
-};
-
-App(config);
-
-
+// module.exports = require('dva-core')
+// module.exports.saga = require('dva-core/saga')
+// module.exports.createLoading = require('dva-loading')
+// module.exports.connect = require('./utils/connect.js')
+// module.exports.regeneratorRuntime = require('regenerator-runtime')

@@ -1,61 +1,26 @@
 {
   "name": "dva-wxapp",
-  "version": "0.0.1",
-  "description": "dva-wxapp",
+  "version": "0.1.2",
+  "description": "dva for wechat app",
   "scripts": {
-    "start": "webpack --watch",
     "webpack": "webpack",
     "prebuild": "rm -rf dist/*",
     "build": "cross-env NODE_ENV=production webpack -p"
   },
-  "main": "dist/app.js",
+  "main": "dist/dva-wxapp.js",
   "author": "yautah",
   "license": "MIT",
-  "engines": {
-    "node": ">=4.2.1"
-  },
+  "keywords": ["wechat", "wechatapp", "dva", "redux", "redux-saga", "framework", "frontend"],
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-eslint": "6.1",
     "babel-loader": "^7.1.1",
-    "babel-plugin-lodash": "^3.2.11",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-runtime": "^6.23.0",
-    "copy-webpack-plugin": "^4.0.1",
-    "create-wxapp-page": "^0.0.5",
     "cross-env": "^5.0.1",
-    "css-loader": "^0.28.4",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^4.2.2",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-config-airbnb": "^11.1.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.1",
-    "glob": "^7.1.2",
-    "rimraf": "^2.6.1",
-    "stylelint": "^8.0.0",
-    "stylelint-config-standard": "^17.0.0",
-    "stylelint-scss": "^1.4.4",
-    "stylelint-webpack-plugin": "^0.9.0",
-    "node-sass": "^4.5.2",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.4.1",
-    "wxapp-webpack-plugin": "^0.0.0-11",
-    "wxml-loader": "^0.0.0-6"
-  },
-  "dependencies": {
-    "dva-core": "^0.1.2",
-    "dva-loading": "^0.2.1",
-    "es6-promise": "^4.1.0",
-    "lodash": "^4.17.4",
-    "redux": "^3.7.1",
-    "redux-logger": "^2.0.4"
+    "webpack": "^3.4.1"
   }
 }

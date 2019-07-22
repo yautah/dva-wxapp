@@ -22,6 +22,7 @@
         "__DEV__": true,
         "App": true,
         "Page": true,
+        "getApp", true
     },
     "settings": {
         "import/resolver": {

@@ -1,0 +1,31 @@
+{
+  "name": "dva-loading",
+  "version": "2.0.6",
+  "description": "Auto loading plugin for dva.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvajs/dva"
+  },
+  "homepage": "https://github.com/dvajs/dva",
+  "keywords": [
+    "dva",
+    "dva-plugin",
+    "loading"
+  ],
+  "author": "chencheng <sorrycc@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "dva": "^2.4.1"
+  },
+  "peerDependencies": {
+    "dva": "^2.0.4"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@babel/runtime": "7.0.0-beta.46"
+  }
+}
