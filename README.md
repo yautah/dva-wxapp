@@ -77,9 +77,9 @@ export default {
 
 > 譬如在dva start之前
 ```js
-import user from 'user.js'
+import global from 'global.js'
 
-getApp().model(user)
+getApp().model(global)
 
 //启动dva
 dvapp.start()
@@ -87,8 +87,8 @@ dvapp.start()
 
 > 考虑到分包加载的问题，你也可以选择把model分布到各个分包, 在page初始化前载入model，例如
 ```js
-import user from 'user.js'
-getApp().model(user)
+import global from 'global.js'
+getApp().model(global)
 Page({
  ....
 })
@@ -136,16 +136,6 @@ Page(
 ```
 
 
-## 开始使用
-
-确保安装了 [Node.js](https://nodejs.org/) (>= `v4.2`) 
-
-1. `git clone` 此项目
-2. 通过命令行工具 `cd` 到这个目录，执行 `npm install` 安装依赖模块
-3. 执行 `npm start` 开始开发(webpack会自动监控src内代码变化并实时编译至build目录)。
-4. 通过微信开发者工具，添加 `build` 目录到项目上进行预览。
-5. 开发完成后，执行 `npm run build`进行编译，打开微信开发者工具，添加`dist`目录到项目上进行上传。
-
 
 ## 一些issule
 
@@ -161,11 +151,11 @@ App({
   onLaunch: function() {
   },
 })
-
+```
 
 3. 项目中同时内置了 redux-logger, dva-loading, reselect等lib， 代码不大，方便使用，具体请见example。
 
-```
+
 
 ## 感谢以下项目
 
