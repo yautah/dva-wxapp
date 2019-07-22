@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view style="margin: 30rpx">
+    {{locating ? '定位中...' : locationTxt}}
+  </view>
+
+  <view class="userinfo">
+    <button  bind:tap="handleTap"> 重新获取 </button>
+  </view>
+</view>
