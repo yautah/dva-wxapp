@@ -58,15 +58,8 @@ function createConnect(mapStateToProps) {
     }
 
     function onLoad(options) {
-      if (!app._store.instances) {
-        app._store.instances = {}
-      }
-
       const isMapStateToProps = Boolean(mapStateToProps)
       if (isMapStateToProps) {
-        app._store.instances[this.route] = []
-        app._store.instances[this.route].push(this)
-
         this.unsubscribe = app._store.subscribe(onStateChange.bind(this))
         onStateChange.apply(this)
       }
@@ -93,9 +86,8 @@ function createConnect(mapStateToProps) {
   }
 }
 
-function DvaPage(pageCfg) {
-  let props = pageCfg.props || {}
-  return Page(createConnect())
+export function createPage(mapStateToProps, pageOpts) {
+  return Page(createConnect(mapStateToProps)(pageOpts))
 }
 
 export default createConnect
