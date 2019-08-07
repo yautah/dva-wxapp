@@ -1,7 +1,7 @@
 import invariant from 'invariant'
 import { effects as sagaEffects } from '../libs/redux-saga.min'
 import warning from 'warning'
-import { takeEvery, takeLatest, throttle } from '../libs/redux-saga.min'
+import { takeEvery, takeLatest, throttle } from '../libs/redux-saga-effects.min'
 import { NAMESPACE_SEP } from './constants'
 import prefixType from './prefixType'
 

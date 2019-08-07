@@ -1,5 +1,23 @@
 // import { bindActionCreators } from 'redux';
 //
+//
+//
+import diff from './diff'
+
+function updateByPath(origin, path, value) {
+  const arr = path
+    .replace(/]/g, '')
+    .replace(/\[/g, '.')
+    .split('.')
+  let current = origin
+  for (let i = 0, len = arr.length; i < len; i++) {
+    if (i === len - 1) {
+      current[arr[i]] = value
+    } else {
+      current = current[arr[i]]
+    }
+  }
+}
 
 const hasOwn = Object.prototype.hasOwnProperty
 
@@ -50,10 +68,36 @@ function createConnect(mapStateToProps) {
       if (this.unsubscribe) {
         const state = app._store.getState()
         const mappedState = mapState(state)
-        if (!shallowEqual(this.data, mappedState)) {
-          this.setData(mappedState)
+
+        if (!this.data) {
+          this.data = {}
+        }
+        if (!this.store) {
+          this.store = {}
+        }
+
+        let diffResult = diff(mappedState, this.store)
+
+        if (Object.keys(diffResult).length > 0) {
+          this.setData(diffResult)
+          this.store = { ...mappedState }
           if (page.onStateChange && typeof page.onStateChange === 'function') page.onStateChange.call(this)
         }
+
+        // const { __webviewId__, ...realData } = this.data
+        // let diffResult = diff(mappedState, realData)
+        // if (Object.keys(diffResult).length > 0) {
+        // console.log('set data: ------------- ', mappedState, realData, diffResult)
+        // this.setData({ ...diffResult })
+        // if (page.onStateChange && typeof page.onStateChange === 'function') page.onStateChange.call(this)
+        // }
+
+        // if (!shallowEqual(realData, mappedState)) {
+        // let startTime = Date.now()
+        // this.setData(mappedState, () => console.log('set data: ', mappedState))
+        // this.setData(mappedState)
+        // if (page.onStateChange && typeof page.onStateChange === 'function') page.onStateChange.call(this)
+        // }
       }
     }
 
@@ -86,7 +130,9 @@ function createConnect(mapStateToProps) {
   }
 }
 
-export function createPage(mapStateToProps, pageOpts) {
+export function createPage(model, mapStateToProps, pageOpts) {
+  const app = getApp()
+  app.model(model)
   return Page(createConnect(mapStateToProps)(pageOpts))
 }
 

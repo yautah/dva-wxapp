@@ -1,6 +1,6 @@
 {
   "name": "dva-wxapp",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "dva for wechat app",
   "scripts": {
     "webpack": "webpack",
@@ -10,8 +10,17 @@
   "main": "dist/dva-wxapp.js",
   "author": "yautah",
   "license": "MIT",
-  "keywords": ["wechat", "wechatapp", "dva", "redux", "redux-saga", "framework", "frontend"],
-  "dependencies": {},
+  "keywords": [
+    "wechat",
+    "wechatapp",
+    "dva",
+    "redux",
+    "redux-saga",
+    "framework",
+    "frontend"
+  ],
+  "dependencies": {
+  },
   "peerDependencies": {},
   "devDependencies": {
     "babel-core": "^6.24.0",
