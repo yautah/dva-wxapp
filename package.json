@@ -1,6 +1,6 @@
 {
   "name": "dva-wxapp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "dva for wechat app",
   "scripts": {
     "webpack": "webpack",
